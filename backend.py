@@ -1,5 +1,5 @@
 import pandas as pd
-
+import csv
 indice = {}
 combinaciones = []
 
@@ -23,13 +23,25 @@ def recorrer():
         indice[i] = combinaciones
 
 #creamos la funcion para mostrar las combinaciones realizadas 
-def Mostrar_combinaciones():
+def Mostrar_combinaciones1():
     aux=0
     print("combinaciones realizadas:")
     for combinacion in combinaciones:
         print("combinacion N.",aux,":",combinacion)
         aux=aux+1
-    
+        
+def Mostrar_combinaciones():
+    aux = 0
+    print("Combinaciones realizadas:")
+
+    with open('combinaciones.csv', 'w', newline='') as archivo_csv:
+        writer = csv.writer(archivo_csv)
+        writer.writerow(['Combinación', 'Valores'])
+
+        for combinacion in combinaciones:
+            print("Combinación N.", aux, ":", combinacion)
+            writer.writerow([aux, combinacion])
+            aux = aux + 1        
         
 def combinaciones_rango():
     #cargamos el documento para hacer de guia sobre lo que se debe de combinar
